@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+  - "8"
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+branches:
+  only:
+  - master
+
+install:
+  - "yarn install"
+  - "yarn generate:gh-pages"
+
+script:
+  - echo "Skipping tests"
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_ACCESS_TOKEN
+  target-branch: gh-pages
+  local-dir: dist
+  on:
+    branch: master
+
+notifications:
+  email: false
+  slack:
+    secure: "b3tzt3DDYSAsgyqGpmJvvY9pbUET/RaaTAopIyFyPQogIJGF9lF7rmF4RfVy3kAmK4YAIT/NxTcSwC+VcwkAoDnxp93TFPgf92gvCPLnuviZG9yYPjvqhicKGFEj3YWVNIyqOWPM78yvLrWJ9X9ZEgGwvEvzY1mOiePy8EH+k5z+rW7GmhtXBmLZSzRxAfUL4T55jTaFSHzsdm5XA1VSMkV7x9s+AYJ012oWg0p7md+cg2P377PoLqc8W5dSBWflw5bXQXa5qSU2M+/135bZktQWcMNfmVK1KWLz3xVyROBO7rxmsU7/l18qipvnLtSXt7ZNQlYlYHpB7B7vG0vvbYpcipBycxaQSwR2KobZMeQD5K34OX7zn8s/RQmzxGfNsJ10K+BcpQI1+HIE5csAgSW0iKhP0UG7mF0Jk5ayMLUuHlbI+yexPoluyF8xjXv2fkDMIo6LOJ/Yun+3V+XePGOR2lZY14OKzuDtFY27+zz23XuPESwAwESdO4uOK5K+ENbzdk9yQrAnEKD7bf+QD3BVYbUiYugEW3vb/+7Y/l7UmgfurnaHf5gsD52IhepxZWTOHVWcNKTGUvJ/WxgQilU62QKZR2UIp/XyqlS7CTU5ukYuzSi013BaHtSpXGUa9je+fWAGjuLbVVxMN9snn5/XcsasQ2A5oYi4YfQnCok="
